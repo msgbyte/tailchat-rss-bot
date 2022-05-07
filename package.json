@@ -1,0 +1,37 @@
+{
+  "name": "tailchat-rss-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "rss 推送机器人",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "ts-node --esm ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msgbyte/tailchat-rss-bot.git"
+  },
+  "author": "moonrailgun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/msgbyte/tailchat-rss-bot/issues"
+  },
+  "homepage": "https://github.com/msgbyte/tailchat-rss-bot#readme",
+  "dependencies": {
+    "dayjs": "^1.11.1",
+    "got": "11.8.3",
+    "is-url": "^1.2.4",
+    "lowdb": "^3.0.0",
+    "md5": "^2.3.0",
+    "rss-parser": "^3.12.0"
+  },
+  "devDependencies": {
+    "@types/is-url": "^1.2.30",
+    "@types/lowdb": "^1.0.11",
+    "@types/md5": "^2.3.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  }
+}
