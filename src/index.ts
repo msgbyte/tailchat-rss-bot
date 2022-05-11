@@ -1,5 +1,5 @@
 import Parser from 'rss-parser';
-import got from 'got';
+import axios from 'axios';
 import { JSONFile, Low } from 'lowdb';
 import path from 'node:path';
 import md5 from 'md5';
@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import isUrl from 'is-url';
 
 const rssUrls = (process.env.RSS_URL ?? '').split(',');
+const tailchatNotifyUrl = process.env.TC_NOTIFY_URL;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -78,6 +79,8 @@ async function parseRss(url: string) {
       item.link
     }\n------------------------\n`;
 
+    console.log('pick item:', guid);
+
     data.posts.push({
       rssHash: urlHash,
       guid: guid,
@@ -88,6 +91,9 @@ async function parseRss(url: string) {
     // 发送通知 TODO
     console.log('发送通知...');
     console.log(text);
+    await axios.default.post(tailchatNotifyUrl, {
+      text,
+    });
   }
 }
 
@@ -95,6 +101,12 @@ readDb()
   .then(async () => {
     if (rssUrls.length === 1 && rssUrls[0] === '') {
       console.warn('No rss urls, please set it with env: RSS_URL=xxxxxx,xxxxx');
+      return;
+    }
+    if (!tailchatNotifyUrl) {
+      console.warn(
+        'No tailchat notify url, please set it with env: TC_NOTIFY_URL=xxxxxx/api/plugin:com.msgbyte.simplenotify/webhook/callback?subscribeId=xxxxx'
+      );
       return;
     }
 
