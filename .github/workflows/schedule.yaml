@@ -1,4 +1,4 @@
-name: Update gist with WakaTime stats
+name: Hourly Check RSS and send notify
 on:
   schedule:
     - cron: "0 */1 * * *"
