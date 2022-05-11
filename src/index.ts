@@ -91,9 +91,14 @@ async function parseRss(url: string) {
     // 发送通知 TODO
     console.log('发送通知...');
     console.log(text);
-    await axios.default.post(tailchatNotifyUrl, {
-      text,
-    });
+    try {
+      await axios.default.post(tailchatNotifyUrl, {
+        text,
+      });
+    } catch (err) {
+      console.error(err?.response?.data);
+      throw err;
+    }
   }
 }
 
