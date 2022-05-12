@@ -26,7 +26,7 @@ jobs:
           version: 6.24.2
           run_install: true
       - name: Checkout db
-        uses: moonrailgun/branch-filestorage-action@v1.2.1
+        uses: moonrailgun/branch-filestorage-action@v1.2.2
         with:
           path: db/posts.json
       - name: Run RSS Script
