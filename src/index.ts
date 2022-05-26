@@ -34,7 +34,7 @@ async function saveDb() {
   await db.write();
 }
 
-async function parseRss(url: string) {
+async function parseRss(url: string, notifyUrl: string) {
   const data = db.data;
   if (!data) {
     throw new Error('db.data not inited');
@@ -92,7 +92,7 @@ async function parseRss(url: string) {
     console.log('发送通知...');
     console.log(text);
     try {
-      await axios.default.post(tailchatNotifyUrl, {
+      await axios.default.post(notifyUrl, {
         text,
       });
     } catch (err) {
@@ -117,7 +117,7 @@ readDb()
 
     for (const url of rssUrls) {
       if (isUrl(url)) {
-        await parseRss(url);
+        await parseRss(url, tailchatNotifyUrl);
       } else {
         console.warn(`url [${url}] is not valid url`);
       }

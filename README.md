@@ -1,6 +1,10 @@
 # tailchat-rss-bot
 RSS Notify Bot for Tailchat
 
+Its is free and dont need deploy! Everything is work by github action!
+
+Save data with [moonrailgun/branch-filestorage-action](https://github.com/moonrailgun/branch-filestorage-action)
+
 ## Usage
 
 - Fork it
